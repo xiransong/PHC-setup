@@ -54,6 +54,8 @@ fi
 # ---------------------------------------------------------------------------
 echo "[3/3] Installing PHC Python dependencies"
 
+pip install --upgrade pip
+
 echo "[PHC] Enforcing compatible PyTorch + NumPy versions"
 
 pip uninstall -y torch torchvision torchaudio numpy pytorch-lightning || true
@@ -67,15 +69,34 @@ pip install \
 pip install numpy==1.23.5
 pip install pytorch-lightning==1.9.5
 
-pip install --upgrade pip
-
 # IMPORTANT:
 # We use --no-deps to prevent pip from auto-upgrading critical packages
 # (especially torch and numpy). PHC / Isaac Gym require:
 #   - torch==1.13.1 (PyTorch 2.x breaks gymtorch)
 #   - numpy==1.23.5 (numpy>=1.24 removes np.float)
 # Letting pip resolve dependencies freely WILL break Isaac Gym.
-pip install -r requirement.txt --no-deps
+pip install -r requirements.txt --no-deps
+
+# Explicit runtime deps missing from requirements.txt
+pip install \
+  beautifulsoup4 \
+  glfw \
+  absl-py \
+  python-utils \
+  gymnasium==0.29.1 \
+  lazy-loader \
+  matplotlib \
+  hydra-core==1.3.2 \
+  pandas \
+  threadpoolctl \
+  addict \
+  plotly \
+  dash \
+  ray==2.6.3 \
+  tensorboardX \
+  tensorboard \
+  wandb \
+  pydantic==1.10.13
 
 echo "============================================================"
 echo "[Done] PHC installed successfully"
