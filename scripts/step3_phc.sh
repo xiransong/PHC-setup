@@ -75,7 +75,7 @@ pip install --upgrade pip
 #   - torch==1.13.1 (PyTorch 2.x breaks gymtorch)
 #   - numpy==1.23.5 (numpy>=1.24 removes np.float)
 # Letting pip resolve dependencies freely WILL break Isaac Gym.
-pip install -r requirements.txt --no-deps
+pip install -r requirement.txt --no-deps
 
 echo "============================================================"
 echo "[Done] PHC installed successfully"
